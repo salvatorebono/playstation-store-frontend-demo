@@ -1,3 +1,8 @@
 footer {
-   background-color: #003697;
+  background-color: #003697;
+}
+
+.footer-link:hover {
+  color: rgb(179, 195, 224) !important;
+  cursor: pointer;
 }

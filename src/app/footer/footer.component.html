@@ -3,19 +3,25 @@
     <div class="pt-5 pb-5 align-items-center d-flex">
       <img src="logo-footer.png" width="48" alt="logo" />
       <img class="ms-5 me-2" src="globe.png" width="27" alt="globe" />
-      Paese / Regione Italia &#8250;
+      <span class="footer-link"> Paese / Regione Italia &#8250;</span>
     </div>
     <div class="row">
       <div *ngFor="let section of footerLinks" class="col">
         <ul class="list-unstyled">
-          <li class="my-2" *ngFor="let link of section.links">{{ link }}</li>
+          <li class="my-2" *ngFor="let link of section.links">
+            <a class="footer-link text-decoration-none text-white">{{
+              link
+            }}</a>
+          </li>
         </ul>
       </div>
     </div>
 
     <div class="text-center pt-5 pb-5">
-      © 2025 Sony Interactive Entertainment Europe Ltd. Tutti i diritti
-      riservati.
+      <span class="footer-link">
+        © 2025 Sony Interactive Entertainment Europe Ltd. Tutti i diritti
+        riservati.
+      </span>
     </div>
   </div>
 </footer>
