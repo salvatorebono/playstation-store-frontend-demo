@@ -1,0 +1,21 @@
+<footer class="text-white">
+  <div class="container">
+    <div class="pt-5 pb-5 align-items-center d-flex">
+      <img src="logo-footer.png" width="48" alt="logo" />
+      <img class="ms-5 me-2" src="globe.png" width="27" alt="globe" />
+      Paese / Regione Italia &#8250;
+    </div>
+    <div class="row">
+      <div *ngFor="let section of footerLinks" class="col">
+        <ul class="list-unstyled">
+          <li class="my-2" *ngFor="let link of section.links">{{ link }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center pt-5 pb-5">
+      © 2025 Sony Interactive Entertainment Europe Ltd. Tutti i diritti
+      riservati.
+    </div>
+  </div>
+</footer>

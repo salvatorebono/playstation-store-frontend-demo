@@ -1,0 +1,25 @@
+<nav class="navbar fixed-top bg-white" style="min-height: 64px">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img
+        src="logo.png"
+        alt="Logo"
+        width="197"
+        height="32"
+        class="object-fit-contain"
+      />
+    </a>
+    <ul
+      class="navbar-nav flex-grow-1 justify-content-center flex-row fw-semibold"
+    >
+      <li class="nav-item pe-1" *ngFor="let link of navigationLinks">
+        <a
+          class="nav-link py-1 px-3 rounded-pill"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          >{{ link.label }}</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
