@@ -1,3 +1,10 @@
 body {
   background-color: rgb(229, 229, 229) !important;
 }
+.playstation-box {
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.12);
+}
+
+.mb-custom {
+  margin-bottom: 64px;
+}
