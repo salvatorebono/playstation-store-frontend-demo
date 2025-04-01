@@ -18,6 +18,7 @@
           class="nav-link py-1 px-3 rounded-pill"
           [routerLink]="link.path"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           >{{ link.label }}</a
         >
       </li>

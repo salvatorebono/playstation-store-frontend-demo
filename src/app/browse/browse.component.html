@@ -1,0 +1,12 @@
+<div class="container">
+  <h2 class="mb-5">Tutti i giochi</h2>
+  <div class="row g-3">
+    <div *ngFor="let item of games" class="col-2">
+      <div class="card bg-transparent border-0">
+        <img [src]="item.img" class="card-img" [alt]="item.title" />
+        <div>{{ item.title }}</div>
+        <div>{{ item.price }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,6 @@ export class NavbarComponent {
     { label: 'Raccolte', path: 'raccolte' },
     { label: 'Promozioni', path: 'promozioni' },
     { label: 'Abbonamenti', path: 'abbonamenti' },
-    { label: 'Sfoglia', path: 'sfoglia' },
+    { label: 'Sfoglia', path: 'browse' },
   ];
 }
