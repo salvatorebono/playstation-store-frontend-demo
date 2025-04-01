@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { NewsComponent } from './latest.component';
+import { LatestComponent } from './latest.component';
 
 describe('NewsComponent', () => {
-  let component: NewsComponent;
-  let fixture: ComponentFixture<NewsComponent>;
+  let component: LatestComponent;
+  let fixture: ComponentFixture<LatestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NewsComponent],
+      imports: [LatestComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NewsComponent);
+    fixture = TestBed.createComponent(LatestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
