@@ -1,0 +1,13 @@
+.carousel-btn {
+  width: 50px;
+  height: 50px;
+  top: 159px;
+}
+
+.carousel-left {
+  left: -20px;
+}
+
+.carousel-right {
+  right: -20px;
+}

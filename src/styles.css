@@ -1,6 +1,7 @@
 body {
   background-color: rgb(229, 229, 229) !important;
 }
+
 .playstation-box {
   box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.12);
 }
@@ -12,4 +13,8 @@ body {
 .card:hover {
   filter: brightness(90%);
   cursor: pointer;
+}
+
+.container {
+  max-width: 1920px !important;
 }

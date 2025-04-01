@@ -22,44 +22,10 @@
       </div>
     </div>
   </section>
-  <section>
-    <h3 class="mb-3">I 10 giochi migliori nel tuo Paese</h3>
-
-    <div class="mb-custom position-relative">
-      <div class="row g-3 justify-content-center">
-        <div *ngFor="let item of visibleItems" class="col-2">
-          <div class="card bg-transparent border-0">
-            <img [src]="item.img" class="card-img" [alt]="item.title" />
-            <div>{{ item.title }}</div>
-            <div>{{ item.price }}</div>
-          </div>
-        </div>
-      </div>
-
-      <button
-        *ngIf="currentIndex != 0"
-        class="btn btn-primary position-absolute top-50 translate-middle-y rounded-circle carousel-btn d-flex align-items-center justify-content-center"
-        style="left: -20px"
-        (click)="prev()"
-      >
-        <img src="left-chevron.png" width="24" height="24" alt="Left Chevron" />
-      </button>
-
-      <button
-        class="btn btn-primary position-absolute top-50 translate-middle-y rounded-circle carousel-btn d-flex align-items-center justify-content-center"
-        style="right: -20px"
-        (click)="next()"
-        *ngIf="currentIndex == 0"
-      >
-        <img
-          src="right-chevron.png"
-          width="24"
-          height="24"
-          alt="Right Chevron"
-        />
-      </button>
-    </div>
-  </section>
+  <app-carousel [items]="carouselItems"></app-carousel>
+  <app-carousel [items]="carouselItems1"></app-carousel>
+  <app-carousel [items]="carouselItems2"></app-carousel>
+  <app-carousel [items]="carouselItems3"></app-carousel>
 </div>
 <section class="mb-custom">
   <img
