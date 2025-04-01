@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
   navigationLinks = [
-    { label: 'Novità', path: '' },
+    { label: 'Novità', path: 'latest' },
     { label: 'Raccolte', path: 'raccolte' },
     { label: 'Promozioni', path: 'promozioni' },
     { label: 'Abbonamenti', path: 'abbonamenti' },

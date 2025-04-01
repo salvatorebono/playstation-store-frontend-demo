@@ -1,14 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { TitleService } from '../services/title.service';
 
 @Component({
-  selector: 'app-news',
+  selector: 'app-latest',
   imports: [CommonModule, CarouselComponent],
-  templateUrl: './news.component.html',
-  styleUrl: './news.component.css',
+  templateUrl: './latest.component.html',
+  styleUrl: './latest.component.css',
 })
-export class NewsComponent {
+export class LatestComponent implements OnInit {
+  constructor(private titleService: TitleService) {}
+
+  ngOnInit(): void {
+    this.titleService.setTitle('Novità | PlayStation™Store ufficiale Italia');
+  }
+
   gamePreviewList = [
     {
       img: 'images/game-preview/astrobot.jpg',

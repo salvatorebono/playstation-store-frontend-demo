@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CarouselComponent {
   @Input() items: any[] = [];
+  @Input() title: string = '';
 
   currentIndex = 0;
   itemsPerPage = 6;

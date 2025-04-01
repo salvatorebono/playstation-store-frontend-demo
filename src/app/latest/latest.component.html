@@ -22,10 +22,13 @@
       </div>
     </div>
   </section>
-  <app-carousel [items]="carouselItems"></app-carousel>
-  <app-carousel [items]="carouselItems1"></app-carousel>
-  <app-carousel [items]="carouselItems2"></app-carousel>
-  <app-carousel [items]="carouselItems3"></app-carousel>
+  <app-carousel
+    title="I 10 giochi migliori nel tuo Paese"
+    [items]="carouselItems"
+  ></app-carousel>
+  <app-carousel title="Nuovi giochi" [items]="carouselItems1"></app-carousel>
+  <app-carousel title="Pre-ordini" [items]="carouselItems2"></app-carousel>
+  <app-carousel title="Demo" [items]="carouselItems3"></app-carousel>
 </div>
 <section class="mb-custom">
   <img
