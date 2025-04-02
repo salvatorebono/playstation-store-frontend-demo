@@ -6,7 +6,7 @@ import { Game } from '../models/game.model';
   providedIn: 'root',
 })
 export class GamesService {
-  private apiUrl = 'api';
+  private apiUrl = 'http://localhost:8080/gamestore/api/products/';
 
   games = [
     {
@@ -15,6 +15,7 @@ export class GamesService {
       title: 'EA SPORTS FC™ 25',
       price: '€79,99',
       description: 'A football simulation game by EA Sports.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 2,
@@ -22,6 +23,7 @@ export class GamesService {
       title: 'Fortnite',
       price: 'Gratis',
       description: 'A popular battle royale game.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 3,
@@ -29,6 +31,7 @@ export class GamesService {
       title: 'Assassin’s Creed Shadows',
       price: '€79,99',
       description: 'An action-adventure game in the Assassin’s Creed series.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ export class GamesService {
       title: 'Call of Duty®',
       price: '€55,99',
       description: 'A first-person shooter game.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 5,
@@ -44,6 +48,7 @@ export class GamesService {
       price: '€19,99',
       description:
         'A sandbox game about placing blocks and going on adventures.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 6,
@@ -51,6 +56,7 @@ export class GamesService {
       title: 'The First Berserker: Khazan',
       price: '€59,99',
       description: 'An action RPG game.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 7,
@@ -58,6 +64,7 @@ export class GamesService {
       title: 'eFootball™',
       price: 'Gratis',
       description: 'A free-to-play football simulation game.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 8,
@@ -65,6 +72,7 @@ export class GamesService {
       title: 'NBA 2K25',
       price: '€23,99',
       description: 'A basketball simulation game.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 9,
@@ -72,6 +80,7 @@ export class GamesService {
       title: 'Grand Theft Auto V ',
       price: '€19,99',
       description: 'An open-world action-adventure game.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
     {
       id: 10,
@@ -79,6 +88,7 @@ export class GamesService {
       title: "Tom Clancy's Rainbow Six® Siege",
       price: '€29,99',
       description: 'A tactical shooter game.',
+      imgBackground: 'images/game-background-image/1.jpg',
     },
   ];
 

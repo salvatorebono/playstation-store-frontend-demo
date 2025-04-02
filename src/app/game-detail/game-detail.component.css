@@ -1,0 +1,11 @@
+.vh-50 {
+  height: 50vh;
+}
+
+.translate-middle-y-custom {
+  transform: translateY(+50%);
+}
+
+.pt-custom {
+  padding-top: 96.8px;
+}

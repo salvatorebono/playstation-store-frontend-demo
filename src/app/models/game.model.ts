@@ -4,20 +4,13 @@ export interface Game {
   price: string;
   description: string;
   img: string;
+  imgBackground: string;
 }
 
-/*   edition: [
-    {
-      title: string;
-      price: string;
-      features: string[];
-      img: string;
-    }
-  ];
-  additional_content: [
-    {
-      title: string;
-      price: string;
-      img: string;
-    }
-  ]; */
+/* additional_content: [
+  {
+    title: string;
+    price: string;
+    img: string;
+  }
+]; */
