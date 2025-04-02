@@ -94,7 +94,7 @@ export class GamesService {
   ];
 
   constructor(/* private http: HttpClient */) {
-    this.loadRecipesFromStorage(); // Carica le ricette salvate nel localStorage all'avvio
+    this.loadGamesFromStorage(); // Carica le ricette salvate nel localStorage all'avvio
   }
 
   /**
@@ -102,19 +102,19 @@ export class GamesService {
    * Se esistono dati salvati, li carica nel vettore recipes.
    * Altrimenti, salva le ricette predefinite nel localStorage.
    */
-  private loadRecipesFromStorage() {
+  private loadGamesFromStorage() {
     //recupero le ricette dal localStorage
     const storedRecipes = localStorage.getItem(this.storageKey);
 
     if (storedRecipes) {
       this.games = JSON.parse(storedRecipes);
     } else {
-      this.saveRecipesToStorage(); // Se non ci sono ricette salvate, salva quelle predefinite
+      this.saveGamesToStorage(); // Se non ci sono ricette salvate, salva quelle predefinite
     }
   }
 
   //Metodo per salvare le ricette attuali nel localStorage.
-  private saveRecipesToStorage() {
+  private saveGamesToStorage() {
     // localStorage.setItem() ha bisogno di due argomenti:
     // 1. La **chiave** dove vengono  salvati i dati
     // 2. Il **dato** che vogliamo salvare
@@ -136,12 +136,34 @@ export class GamesService {
   }
 
   addGame(game: Game) {
-    // Trova il valore massimo dell'ID attuale e aggiungi 1
+    // Valore massimo dell'ID attuale e aggiungi 1
     const newId =
       this.games.length > 0 ? Math.max(...this.games.map((g) => g.id)) + 1 : 1;
     const newGame = { ...game, id: newId };
 
     this.games.push(newGame);
-    this.saveRecipesToStorage();
+    this.saveGamesToStorage();
   }
+
+  /*  addGame(game: Game): Observable<Game> {
+    return this.http.post<Game>(this.apiUrl, game);
+  } */
+
+  deleteGame(id: number): Observable<Game[]> {
+    // Trova l'indice della ricetta da eliminare
+    const index = this.games.findIndex((game) => game.id === id);
+
+    // splice per eliminare la ricetta
+    this.games.splice(index, 1);
+
+    // aggiorno il localStorage
+    this.saveGamesToStorage();
+
+    // ritorno l'array aggiornato
+    return of(this.games);
+  }
+
+  /* deleteGame(game: Game): Observable<Game> {
+    return this.http.delete<Game>(this.apiUrl + game.id, game);
+  } */
 }

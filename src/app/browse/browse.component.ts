@@ -13,6 +13,8 @@ import { TitleService } from '../services/title.service';
   styleUrl: './browse.component.css',
 })
 export class BrowseComponent implements OnInit {
+  showModal = false;
+  confirmDelete = false;
   games: Game[] = [];
 
   constructor(
@@ -34,4 +36,20 @@ export class BrowseComponent implements OnInit {
         this.games = games;
       });
   }
+
+  deleteGame(item: number) {
+    this.gamesService.deleteGame(item).subscribe((games) => {
+      this.games = games;
+    });
+  }
+
+  /* deleteGame(item: number) {
+    this.showModal = true;
+    if (this.confirmDelete) {
+      this.showModal = false;
+      this.gamesService.deleteGame(item).subscribe((games) => {
+        this.games = games;
+      });
+    }
+  } */
 }
