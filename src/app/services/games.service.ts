@@ -6,6 +6,7 @@ import { Game } from '../models/game.model';
   providedIn: 'root',
 })
 export class GamesService {
+  private storageKey = 'games';
   private apiUrl = 'http://localhost:8080/gamestore/api/products/';
 
   games = [
@@ -13,7 +14,7 @@ export class GamesService {
       id: 1,
       img: 'images/gallery-carousel/1.jpg',
       title: 'EA SPORTS FC™ 25',
-      price: '€79,99',
+      price: 79.99,
       description: 'A football simulation game by EA Sports.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -21,7 +22,7 @@ export class GamesService {
       id: 2,
       img: 'images/gallery-carousel/2.jpg',
       title: 'Fortnite',
-      price: 'Gratis',
+      price: 0,
       description: 'A popular battle royale game.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -29,7 +30,7 @@ export class GamesService {
       id: 3,
       img: 'images/gallery-carousel/3.jpg',
       title: 'Assassin’s Creed Shadows',
-      price: '€79,99',
+      price: 79.99,
       description: 'An action-adventure game in the Assassin’s Creed series.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -37,7 +38,7 @@ export class GamesService {
       id: 4,
       img: 'images/gallery-carousel/4.jpg',
       title: 'Call of Duty®',
-      price: '€55,99',
+      price: 55.99,
       description: 'A first-person shooter game.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -45,7 +46,7 @@ export class GamesService {
       id: 5,
       img: 'images/gallery-carousel/5.jpg',
       title: 'Minecraft',
-      price: '€19,99',
+      price: 19.99,
       description:
         'A sandbox game about placing blocks and going on adventures.',
       imgBackground: 'images/game-background-image/1.jpg',
@@ -54,7 +55,7 @@ export class GamesService {
       id: 6,
       img: 'images/gallery-carousel/6.jpg',
       title: 'The First Berserker: Khazan',
-      price: '€59,99',
+      price: 59.99,
       description: 'An action RPG game.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -62,7 +63,7 @@ export class GamesService {
       id: 7,
       img: 'images/gallery-carousel/7.jpg',
       title: 'eFootball™',
-      price: 'Gratis',
+      price: 0,
       description: 'A free-to-play football simulation game.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -70,7 +71,7 @@ export class GamesService {
       id: 8,
       img: 'images/gallery-carousel/8.jpg',
       title: 'NBA 2K25',
-      price: '€23,99',
+      price: 23.99,
       description: 'A basketball simulation game.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -78,7 +79,7 @@ export class GamesService {
       id: 9,
       img: 'images/gallery-carousel/9.jpg',
       title: 'Grand Theft Auto V ',
-      price: '€19,99',
+      price: 19.99,
       description: 'An open-world action-adventure game.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
@@ -86,25 +87,61 @@ export class GamesService {
       id: 10,
       img: 'images/gallery-carousel/10.jpg',
       title: "Tom Clancy's Rainbow Six® Siege",
-      price: '€29,99',
+      price: 29.99,
       description: 'A tactical shooter game.',
       imgBackground: 'images/game-background-image/1.jpg',
     },
   ];
 
-  /* constructor(private http: HttpClient) {} */
+  constructor(/* private http: HttpClient */) {
+    this.loadRecipesFromStorage(); // Carica le ricette salvate nel localStorage all'avvio
+  }
+
+  /**
+   * Metodo per caricare le ricette dal localStorage.
+   * Se esistono dati salvati, li carica nel vettore recipes.
+   * Altrimenti, salva le ricette predefinite nel localStorage.
+   */
+  private loadRecipesFromStorage() {
+    //recupero le ricette dal localStorage
+    const storedRecipes = localStorage.getItem(this.storageKey);
+
+    if (storedRecipes) {
+      this.games = JSON.parse(storedRecipes);
+    } else {
+      this.saveRecipesToStorage(); // Se non ci sono ricette salvate, salva quelle predefinite
+    }
+  }
+
+  //Metodo per salvare le ricette attuali nel localStorage.
+  private saveRecipesToStorage() {
+    // localStorage.setItem() ha bisogno di due argomenti:
+    // 1. La **chiave** dove vengono  salvati i dati
+    // 2. Il **dato** che vogliamo salvare
+    localStorage.setItem(this.storageKey, JSON.stringify(this.games));
+  }
 
   /* Observable<Game[]> indica che il metodo getGames() restituisce un flusso di dati asincrono, ovvero un oggetto Observable che emetterà un array di oggetti Game quando la chiamata HTTP sarà completata con successo */
   getGames(): Observable<Game[]> {
     return of(this.games);
 
     // Chiamata HTTP GET per ottenere un array di oggetti Game dall'API specificata in apiUrl
-    //return this.http.get<Game[]>(this.apiUrl);
+    /* return this.http.get<Game[]>(this.apiUrl); */
   }
 
   getGameById(id: number): Observable<Game | undefined> {
     return of(this.games).pipe(
       map((games) => games.find((game) => game.id === id))
     );
+  }
+
+  addGame(game: Game) {
+    // Trova il valore massimo dell'ID attuale e aggiungi 1
+    const newId =
+      this.games.length > 0 ? Math.max(...this.games.map((g) => g.id)) + 1 : 1;
+    const newGame = { ...game, id: newId };
+
+    this.games.push(newGame);
+    this.saveRecipesToStorage();
   }
 }

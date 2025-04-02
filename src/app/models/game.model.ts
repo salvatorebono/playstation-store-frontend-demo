@@ -1,7 +1,7 @@
 export interface Game {
   id: number;
   title: string;
-  price: string;
+  price: number;
   description: string;
   img: string;
   imgBackground: string;

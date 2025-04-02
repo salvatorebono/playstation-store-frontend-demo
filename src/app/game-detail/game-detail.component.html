@@ -8,7 +8,9 @@
     class="position-absolute start-0 bottom-0 translate-middle-y-custom text-white bg-dark py-4 px-5 ms-5 d-flex flex-column"
   >
     <h3>{{ game?.title }}</h3>
-    <div class="fs-3">{{ game?.price }}</div>
+    <div class="fs-3" *ngIf="game">
+      {{ game.price > 0 ? "€" + game.price : "Gratis" }}
+    </div>
     <button class="btn btn-danger mt-4 rounded-pill fw-semibold">
       Aggiungi al carrello
     </button>

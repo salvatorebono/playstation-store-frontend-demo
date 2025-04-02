@@ -1,0 +1,87 @@
+<div class="container mb-5">
+  <h2 class="mb-4">Aggiungi il tuo gioco</h2>
+  <form class="row g-3" [formGroup]="gameForm" (ngSubmit)="addGame()">
+    <div class="col-md-9">
+      <label for="title" class="form-label">Titolo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        formControlName="title"
+      />
+      <div
+        class="text-danger"
+        *ngIf="gameForm.get('title')?.invalid && gameForm.get('title')?.touched"
+      >
+        Il titolo è obbligatorio e deve contenere almeno 3 caratteri.
+      </div>
+    </div>
+
+    <div class="col-md">
+      <label for="price" class="form-label">Prezzo</label>
+      <input
+        type="number"
+        step="0.01"
+        class="form-control"
+        id="price"
+        formControlName="price"
+      />
+      <div
+        class="text-danger"
+        *ngIf="gameForm.get('price')?.invalid && gameForm.get('price')?.touched"
+      >
+        Il prezzo è obbligatorio e deve essere positivo.
+      </div>
+    </div>
+
+    <div class="form-floating">
+      <textarea
+        class="form-control"
+        id="description"
+        formControlName="description"
+        style="height: 100px"
+      ></textarea>
+      <label for="description">Descrizione</label>
+      <div
+        class="text-danger"
+        *ngIf="
+          gameForm.get('description')?.invalid &&
+          gameForm.get('description')?.touched
+        "
+      >
+        La descrizione deve contenere almeno 10 caratteri.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="img" class="form-label">Miniatura</label>
+      <input
+        type="file"
+        class="form-control"
+        id="img"
+        formControlName="img"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="imgBackground" class="form-label">Sfondo</label>
+      <input
+        type="file"
+        class="form-control"
+        id="imgBackground"
+        formControlName="imgBackground"
+      />
+    </div>
+
+    <div class="col-12 d-flex justify-content-end">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="gameForm.invalid"
+      >
+        Aggiungi
+      </button>
+    </div>
+  </form>
+</div>
