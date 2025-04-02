@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { BrowseComponent } from './browse/browse.component';
+import { GameDetailComponent } from './game-detail/game-detail.component';
 import { LatestComponent } from './latest/latest.component';
 
 export const routes: Routes = [
@@ -7,4 +8,5 @@ export const routes: Routes = [
   { path: '', redirectTo: '/latest', pathMatch: 'full' },
   { path: 'latest', component: LatestComponent },
   { path: 'browse', component: BrowseComponent },
+  { path: 'game/:id', component: GameDetailComponent },
 ];

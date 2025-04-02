@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterModule } from '@angular/router';
 import { Game } from '../models/game.model';
 import { GamesService } from '../services/games.service';
 import { TitleService } from '../services/title.service';
 
 @Component({
   selector: 'app-browse',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })

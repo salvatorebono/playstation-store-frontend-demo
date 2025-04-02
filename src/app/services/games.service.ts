@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { Game } from '../models/game.model';
 
 @Injectable({
@@ -90,5 +90,11 @@ export class GamesService {
 
     // Chiamata HTTP GET per ottenere un array di oggetti Game dall'API specificata in apiUrl
     //return this.http.get<Game[]>(this.apiUrl);
+  }
+
+  getGameById(id: number): Observable<Game | undefined> {
+    return of(this.games).pipe(
+      map((games) => games.find((game) => game.id === id))
+    );
   }
 }
