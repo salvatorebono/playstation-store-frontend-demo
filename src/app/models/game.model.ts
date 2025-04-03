@@ -4,5 +4,4 @@ export interface Game {
   price: number;
   description: string;
   img: string;
-  imgBackground: string;
 }

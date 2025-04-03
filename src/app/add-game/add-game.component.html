@@ -8,6 +8,7 @@
         class="form-control"
         id="title"
         formControlName="title"
+        [(ngModel)]="game.title"
       />
       <div
         class="text-danger"
@@ -25,6 +26,7 @@
         class="form-control"
         id="price"
         formControlName="price"
+        [(ngModel)]="game.price"
       />
       <div
         class="text-danger"
@@ -39,6 +41,7 @@
         class="form-control"
         id="description"
         formControlName="description"
+        [(ngModel)]="game.description"
         style="height: 100px"
       ></textarea>
       <label for="description">Descrizione</label>
@@ -63,15 +66,16 @@
         (change)="onFileSelected($event)"
       />
     </div>
-    <div class="col-md-6">
+    <!--     <div class="col-md-6">
       <label for="imgBackground" class="form-label">Sfondo</label>
       <input
         type="file"
         class="form-control"
         id="imgBackground"
         formControlName="imgBackground"
+        (change)="onFileSelected1($event)"
       />
-    </div>
+    </div> -->
 
     <div class="col-12 d-flex justify-content-end">
       <button

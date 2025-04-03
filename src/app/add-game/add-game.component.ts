@@ -18,6 +18,14 @@ import { GamesService } from '../services/games.service';
 export class AddGameComponent {
   gameForm: FormGroup;
 
+  game = {
+    id: 0,
+    img: '',
+    title: '',
+    price: 0,
+    description: '',
+  };
+
   constructor(
     private fb: FormBuilder,
     private gamesService: GamesService,
@@ -28,7 +36,7 @@ export class AddGameComponent {
       price: ['', [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       img: ['', Validators.required],
-      imgBackground: ['', Validators.required],
+      /*    imgBackground: ['', Validators.required], */
     });
   }
 
@@ -43,20 +51,36 @@ export class AddGameComponent {
       const reader = new FileReader();
       // Quando il file è stato caricato, assegna il risultato alla proprietà img dell'oggetto gameForm
       reader.onload = () => {
-        this.gameForm.patchValue({ img: reader.result as string });
+        this.game.img = reader.result as string;
+        /*   this.gameForm.patchValue({ img: reader.result as string }); */
       };
       //converte l'immagine selezionata dall'utente in un URL base64, permettendo di visualizzare l'immagine nel browser senza bisogno di caricarla su un server.
       reader.readAsDataURL(file);
     }
   }
+  // Funzione per gestire il file immagine
+  /*   onFileSelected1(event: Event) {
+    // Estrae il file selezionato dall'evento
+    const file = (event.target as HTMLInputElement).files?.[0];
 
+    // Verifica che effettivamente sia stato selezionato un file
+    if (file) {
+      // Crea un oggetto FileReader, che serve a leggere i file
+      const reader = new FileReader();
+      // Quando il file è stato caricato, assegna il risultato alla proprietà img dell'oggetto gameForm
+      reader.onload = () => {
+        this.gameForm.patchValue({ imgBackground: reader.result as string });
+      };
+      //converte l'immagine selezionata dall'utente in un URL base64, permettendo di visualizzare l'immagine nel browser senza bisogno di caricarla su un server.
+      reader.readAsDataURL(file);
+    }
+  }
+ */
   addGame() {
     if (this.gameForm.valid) {
-      console.log('Game Added:', this.gameForm.value);
-
-      this.gamesService.addGame(this.gameForm.value);
-
-      this.router.navigate(['browse']);
+      this.gamesService.addGame(this.game).subscribe(() => {
+        this.router.navigate(['browse']);
+      });
     }
   }
 }

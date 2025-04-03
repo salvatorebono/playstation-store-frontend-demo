@@ -29,7 +29,7 @@ export class EditGameComponent implements OnInit {
       price: ['', [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       img: ['', Validators.required],
-      imgBackground: ['', Validators.required],
+      /*     imgBackground: ['', Validators.required], */
     });
   }
   ngOnInit() {
@@ -49,7 +49,7 @@ export class EditGameComponent implements OnInit {
               price: game.price,
               description: game.description,
               img: game.img,
-              imgBackground: game.imgBackground,
+              /*  imgBackground: game.imgBackground, */
             });
           }
         });

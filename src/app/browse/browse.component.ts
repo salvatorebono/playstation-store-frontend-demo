@@ -37,9 +37,13 @@ export class BrowseComponent implements OnInit {
       });
   }
 
-  deleteGame(item: number) {
-    this.gamesService.deleteGame(item).subscribe((games) => {
-      this.games = games;
+  deleteGame(id: number) {
+    this.gamesService.deleteGame(id).subscribe((success) => {
+      if (success) {
+        const index = this.games.findIndex((r) => r.id === id);
+        // eliminare il gioco dato l'id
+        this.games.splice(index, 1);
+      }
     });
   }
 
