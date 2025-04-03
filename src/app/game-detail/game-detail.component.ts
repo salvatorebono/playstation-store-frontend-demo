@@ -21,6 +21,24 @@ export class GameDetailComponent implements OnInit {
         price: 79.99,
         img: 'images/edition/1.png',
       },
+      {
+        title: 'EA SPORTS FC™ 25 SHOWCASE',
+        features: ['EA SPORTS FC™ 25 SHOWCASE'],
+        price: 0,
+        img: 'images/edition/2.png',
+      },
+      {
+        title: 'Standard Edition',
+        features: ['EA SPORTS FC™ 25 per PS4 e PS5'],
+        price: 79.99,
+        img: 'images/edition/1.png',
+      },
+      {
+        title: 'Standard Edition',
+        features: ['EA SPORTS FC™ 25 per PS4 e PS5'],
+        price: 79.99,
+        img: 'images/edition/1.png',
+      },
     ],
     additional_content: [{}],
   };
