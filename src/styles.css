@@ -25,3 +25,8 @@ main {
   filter: brightness(90%);
   cursor: pointer;
 }
+
+.custom-btn {
+  width: 40px;
+  height: 40px;
+}

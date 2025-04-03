@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AddGameComponent } from './add-game/add-game.component';
 import { BrowseComponent } from './browse/browse.component';
+import { EditGameComponent } from './edit-game/edit-game.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { LatestComponent } from './latest/latest.component';
 
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'browse', component: BrowseComponent },
   { path: 'game/:id', component: GameDetailComponent },
   { path: 'add-game', component: AddGameComponent },
+  { path: 'edit-game/:id', component: EditGameComponent },
 ];

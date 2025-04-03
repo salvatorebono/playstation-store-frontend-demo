@@ -150,10 +150,10 @@ export class GamesService {
   } */
 
   deleteGame(id: number): Observable<Game[]> {
-    // Trova l'indice della ricetta da eliminare
+    // Trova l'indice del gioco da eliminare
     const index = this.games.findIndex((game) => game.id === id);
 
-    // splice per eliminare la ricetta
+    // splice per eliminare il gioco
     this.games.splice(index, 1);
 
     // aggiorno il localStorage
@@ -166,4 +166,18 @@ export class GamesService {
   /* deleteGame(game: Game): Observable<Game> {
     return this.http.delete<Game>(this.apiUrl + game.id, game);
   } */
+
+  editGame(game: Game): Observable<Game[]> {
+    // Trova l'indice della ricetta da modificare
+    const index = this.games.findIndex((r) => r.id === game.id);
+
+    // Aggiorna la ricetta esistente con i nuovi dati
+    this.games[index] = game;
+
+    // aggiorno il localStorage
+    this.saveGamesToStorage();
+
+    // ritorno l'array aggiornato
+    return of(this.games);
+  }
 }

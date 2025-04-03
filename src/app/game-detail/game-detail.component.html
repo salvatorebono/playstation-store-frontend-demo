@@ -1,4 +1,10 @@
 <div class="position-relative">
+  <button
+    [routerLink]="['/edit-game', game?.id]"
+    class="position-fixed top-50 end-0 btn btn-primary z-1 custom-btn rounded-0 rounded-start-4"
+  >
+    <img src="edit.png" alt="edit" class="w-100 h-100 object-fit-contain" />
+  </button>
   <img
     [src]="game?.imgBackground"
     [alt]="game?.title"
