@@ -79,8 +79,6 @@ export class AddGameComponent {
 
   addGame() {
     if (this.gameForm.valid) {
-      console.log(this.game);
-
       this.gamesService.addGame(this.game).subscribe(() => {
         this.router.navigate(['browse']);
       });

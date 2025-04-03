@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-6">
       <label for="img" class="form-label">Miniatura</label>
       <input
         type="file"
@@ -47,6 +47,16 @@
       />
     </div>
 
+    <div class="col-md-6">
+      <label for="imgBackground" class="form-label">Sfondo</label>
+      <input
+        type="file"
+        class="form-control"
+        id="imgBackground"
+        formControlName="imgBackground"
+        (change)="onFileSelected1($event)"
+      />
+    </div>
     <div class="form-floating">
       <textarea
         class="form-control"
@@ -65,17 +75,6 @@
       >
         La descrizione deve contenere almeno 10 caratteri.
       </div>
-    </div>
-
-    <div class="col-md-6">
-      <label for="imgBackground" class="form-label">Sfondo</label>
-      <input
-        type="file"
-        class="form-control"
-        id="imgBackground"
-        formControlName="imgBackground"
-        (change)="onFileSelected1($event)"
-      />
     </div>
 
     <div class="col-12 d-flex justify-content-end">
