@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Game } from '../models/game.model';
 
 @Injectable({
@@ -138,10 +138,9 @@ export class GamesService {
     return this.http.post<Game>(this.apiUrl, game);
   }
 
-  /* 
   editGame(game: Game): Observable<Game> {
     return this.http.put<Game>(`${this.apiUrl}${game.id}`, game);
-  } */
+  }
 
   deleteGame(id: number): Observable<Game[]> {
     return this.http.delete<Game[]>(`${this.apiUrl}${id}`);
@@ -169,7 +168,7 @@ export class GamesService {
     this.saveGamesToStorage();
   } */
 
-  editGame(game: Game): Observable<Game[]> {
+  /*  editGame(game: Game): Observable<Game[]> {
     // Trova l'indice della ricetta da modificare
     const index = this.games.findIndex((r) => r.id === game.id);
 
@@ -181,7 +180,7 @@ export class GamesService {
 
     // ritorno l'array aggiornato
     return of(this.games);
-  }
+  } */
 
   /*   deleteGame(id: number): Observable<Game[]> {
     // Trova l'indice del gioco da eliminare

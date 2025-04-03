@@ -18,6 +18,15 @@ import { GamesService } from '../services/games.service';
 export class EditGameComponent implements OnInit {
   gameForm: FormGroup;
   gameId: number | null = null;
+
+  game = {
+    id: 0,
+    img: '',
+    title: '',
+    price: 0,
+    description: '',
+  };
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -29,9 +38,9 @@ export class EditGameComponent implements OnInit {
       price: ['', [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       img: ['', Validators.required],
-      /*     imgBackground: ['', Validators.required], */
     });
   }
+
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       //Recupero il valore del parametro 'id' dalla URL
@@ -56,6 +65,7 @@ export class EditGameComponent implements OnInit {
       }
     });
   }
+
   // Funzione per gestire il file immagine
   onFileSelected(event: Event) {
     // Estrae il file selezionato dall'evento
@@ -67,7 +77,8 @@ export class EditGameComponent implements OnInit {
       const reader = new FileReader();
       // Quando il file è stato caricato, assegna il risultato alla proprietà img dell'oggetto gameForm
       reader.onload = () => {
-        this.gameForm.patchValue({ img: reader.result as string });
+        this.game.img = reader.result as string;
+        /*   this.gameForm.patchValue({ img: reader.result as string }); */
       };
       //converte l'immagine selezionata dall'utente in un URL base64, permettendo di visualizzare l'immagine nel browser senza bisogno di caricarla su un server.
       reader.readAsDataURL(file);
@@ -75,14 +86,16 @@ export class EditGameComponent implements OnInit {
   }
 
   editGame() {
-    //per includere anche l'ID del gioco
-    const updatedGame = {
-      ...this.gameForm.value,
-      id: this.gameId,
-    };
-    // Chiamo il servizio per modificare il gioco
-    this.gamesService.editGame(updatedGame);
-    // Reindirizza alla pagina del gioco modificato
-    this.router.navigate(['game/' + this.gameId]);
+    // Verifica la validità del form e l'esistenza dell'ID del gioco
+    if (this.gameForm.valid && this.gameId) {
+      //Creo un oggetto 'updatedGame' che contiene i dati aggiornati del gioco
+      const updatedGame = {
+        ...this.game,
+        id: this.gameId,
+      };
+      this.gamesService.editGame(updatedGame).subscribe(() => {
+        this.router.navigate(['game/' + this.gameId]);
+      });
+    }
   }
 }
