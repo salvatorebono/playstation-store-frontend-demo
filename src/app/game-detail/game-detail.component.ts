@@ -13,6 +13,18 @@ import { GamesService } from '../services/games.service';
 export class GameDetailComponent implements OnInit {
   game: Game | undefined;
 
+  gameDetail = {
+    edition: [
+      {
+        title: 'Standard Edition',
+        features: ['EA SPORTS FC™ 25 per PS4 e PS5'],
+        price: 79.99,
+        img: 'images/edition/1.png',
+      },
+    ],
+    additional_content: [{}],
+  };
+
   constructor(
     private gamesService: GamesService,
     private route: ActivatedRoute

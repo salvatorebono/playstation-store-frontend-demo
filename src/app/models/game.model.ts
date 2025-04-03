@@ -6,11 +6,3 @@ export interface Game {
   img: string;
   imgBackground: string;
 }
-
-/* additional_content: [
-  {
-    title: string;
-    price: string;
-    img: string;
-  }
-]; */
