@@ -24,6 +24,7 @@ export class AddGameComponent {
     title: '',
     price: 0,
     description: '',
+    imgBackground: '',
   };
 
   constructor(
@@ -36,7 +37,7 @@ export class AddGameComponent {
       price: ['', [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       img: ['', Validators.required],
-      /*    imgBackground: ['', Validators.required], */
+      imgBackground: ['', Validators.required],
     });
   }
 
@@ -59,7 +60,7 @@ export class AddGameComponent {
     }
   }
   // Funzione per gestire il file immagine
-  /*   onFileSelected1(event: Event) {
+  onFileSelected1(event: Event) {
     // Estrae il file selezionato dall'evento
     const file = (event.target as HTMLInputElement).files?.[0];
 
@@ -69,15 +70,17 @@ export class AddGameComponent {
       const reader = new FileReader();
       // Quando il file è stato caricato, assegna il risultato alla proprietà img dell'oggetto gameForm
       reader.onload = () => {
-        this.gameForm.patchValue({ imgBackground: reader.result as string });
+        this.game.imgBackground = reader.result as string;
       };
       //converte l'immagine selezionata dall'utente in un URL base64, permettendo di visualizzare l'immagine nel browser senza bisogno di caricarla su un server.
       reader.readAsDataURL(file);
     }
   }
- */
+
   addGame() {
     if (this.gameForm.valid) {
+      console.log(this.game);
+
       this.gamesService.addGame(this.game).subscribe(() => {
         this.router.navigate(['browse']);
       });

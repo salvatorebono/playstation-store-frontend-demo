@@ -25,6 +25,7 @@ export class EditGameComponent implements OnInit {
     title: '',
     price: 0,
     description: '',
+    imgBackground: '',
   };
 
   constructor(
@@ -38,6 +39,7 @@ export class EditGameComponent implements OnInit {
       price: ['', [Validators.required, Validators.min(0)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       img: ['', Validators.required],
+      imgBackground: ['', Validators.required],
     });
   }
 
@@ -58,7 +60,7 @@ export class EditGameComponent implements OnInit {
               price: game.price,
               description: game.description,
               img: game.img,
-              /*  imgBackground: game.imgBackground, */
+              imgBackground: game.imgBackground,
             });
           }
         });
@@ -79,6 +81,23 @@ export class EditGameComponent implements OnInit {
       reader.onload = () => {
         this.game.img = reader.result as string;
         /*   this.gameForm.patchValue({ img: reader.result as string }); */
+      };
+      //converte l'immagine selezionata dall'utente in un URL base64, permettendo di visualizzare l'immagine nel browser senza bisogno di caricarla su un server.
+      reader.readAsDataURL(file);
+    }
+  }
+  // Funzione per gestire il file immagine
+  onFileSelected1(event: Event) {
+    // Estrae il file selezionato dall'evento
+    const file = (event.target as HTMLInputElement).files?.[0];
+
+    // Verifica che effettivamente sia stato selezionato un file
+    if (file) {
+      // Crea un oggetto FileReader, che serve a leggere i file
+      const reader = new FileReader();
+      // Quando il file è stato caricato, assegna il risultato alla proprietà img dell'oggetto gameForm
+      reader.onload = () => {
+        this.game.imgBackground = reader.result as string;
       };
       //converte l'immagine selezionata dall'utente in un URL base64, permettendo di visualizzare l'immagine nel browser senza bisogno di caricarla su un server.
       reader.readAsDataURL(file);
