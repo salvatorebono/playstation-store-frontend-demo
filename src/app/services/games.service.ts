@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { Game } from '../models/game.model';
@@ -93,27 +94,27 @@ export class GamesService {
     },
   ];
 
-  constructor(/* private http: HttpClient */) {
-    this.loadGamesFromStorage(); // Carica le ricette salvate nel localStorage all'avvio
+  constructor(private http: HttpClient) {
+    this.loadGamesFromStorage(); // Carica il gioco salvato nel localStorage all'avvio
   }
 
   /**
-   * Metodo per caricare le ricette dal localStorage.
-   * Se esistono dati salvati, li carica nel vettore recipes.
-   * Altrimenti, salva le ricette predefinite nel localStorage.
+   * Metodo per caricare il gioco dal localStorage.
+   * Se esistono dati salvati, li carica in games.
+   * Altrimenti, salva il gioco nel localStorage.
    */
   private loadGamesFromStorage() {
-    //recupero le ricette dal localStorage
+    //recupero il gioco nel localStorage
     const storedRecipes = localStorage.getItem(this.storageKey);
 
     if (storedRecipes) {
       this.games = JSON.parse(storedRecipes);
     } else {
-      this.saveGamesToStorage(); // Se non ci sono ricette salvate, salva quelle predefinite
+      this.saveGamesToStorage(); // Se non ci sono giochi salvati, salva quelle predefinite
     }
   }
 
-  //Metodo per salvare le ricette attuali nel localStorage.
+  //Metodo per salvare il gioco attuale nel localStorage.
   private saveGamesToStorage() {
     // localStorage.setItem() ha bisogno di due argomenti:
     // 1. La **chiave** dove vengono  salvati i dati
@@ -121,12 +122,35 @@ export class GamesService {
     localStorage.setItem(this.storageKey, JSON.stringify(this.games));
   }
 
+  /* ------------------------------ CRUD ------------------------------ */
+
   /* Observable<Game[]> indica che il metodo getGames() restituisce un flusso di dati asincrono, ovvero un oggetto Observable che emetterà un array di oggetti Game quando la chiamata HTTP sarà completata con successo */
+  /*  getGames(): Observable<Game[]> {
+    // Chiamata HTTP GET per ottenere un array di oggetti Game dall'API specificata in apiUrl
+    return this.http.get<Game[]>(this.apiUrl);
+  } */
+
+  /*   getGameById(id: number): Observable<Game> {
+    return this.http.get<Game>(`${this.apiUrl}${id}`);
+  } */
+
+  /*   addGame(game: Game): Observable<Game> {
+    return this.http.post<Game>(this.apiUrl, game);
+  } */
+
+  /* 
+  editGame(game: Game): Observable<Game> {
+    return this.http.put<Game>(`${this.apiUrl}${game.id}`, game);
+  } */
+
+  /*  deleteGames(): Observable<Game[]> {
+    return this.http.delete<Game[]>(this.apiUrl);
+  } */
+
+  /* ------------------------------ CRUD MOCKATE ------------------------------ */
+
   getGames(): Observable<Game[]> {
     return of(this.games);
-
-    // Chiamata HTTP GET per ottenere un array di oggetti Game dall'API specificata in apiUrl
-    /* return this.http.get<Game[]>(this.apiUrl); */
   }
 
   getGameById(id: number): Observable<Game | undefined> {
@@ -145,16 +169,12 @@ export class GamesService {
     this.saveGamesToStorage();
   }
 
-  /*  addGame(game: Game): Observable<Game> {
-    return this.http.post<Game>(this.apiUrl, game);
-  } */
+  editGame(game: Game): Observable<Game[]> {
+    // Trova l'indice della ricetta da modificare
+    const index = this.games.findIndex((r) => r.id === game.id);
 
-  deleteGame(id: number): Observable<Game[]> {
-    // Trova l'indice del gioco da eliminare
-    const index = this.games.findIndex((game) => game.id === id);
-
-    // splice per eliminare il gioco
-    this.games.splice(index, 1);
+    // Aggiorna la ricetta esistente con i nuovi dati
+    this.games[index] = game;
 
     // aggiorno il localStorage
     this.saveGamesToStorage();
@@ -163,16 +183,12 @@ export class GamesService {
     return of(this.games);
   }
 
-  /* deleteGame(game: Game): Observable<Game> {
-    return this.http.delete<Game>(this.apiUrl + game.id, game);
-  } */
+  deleteGame(id: number): Observable<Game[]> {
+    // Trova l'indice del gioco da eliminare
+    const index = this.games.findIndex((game) => game.id === id);
 
-  editGame(game: Game): Observable<Game[]> {
-    // Trova l'indice della ricetta da modificare
-    const index = this.games.findIndex((r) => r.id === game.id);
-
-    // Aggiorna la ricetta esistente con i nuovi dati
-    this.games[index] = game;
+    // splice per eliminare il gioco
+    this.games.splice(index, 1);
 
     // aggiorno il localStorage
     this.saveGamesToStorage();
