@@ -1,4 +1,4 @@
-<div class="container mb-5">
+<div class="container mb-5 mt-5">
   <h2 class="mb-4">Aggiungi il tuo gioco</h2>
   <form class="row g-3" [formGroup]="gameForm" (ngSubmit)="addGame()">
     <div class="col-md-9">
@@ -36,6 +36,17 @@
       </div>
     </div>
 
+    <div class="col-md-12">
+      <label for="img" class="form-label">Miniatura</label>
+      <input
+        type="file"
+        class="form-control"
+        id="img"
+        formControlName="img"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
     <div class="form-floating">
       <textarea
         class="form-control"
@@ -56,16 +67,6 @@
       </div>
     </div>
 
-    <div class="col-md-6">
-      <label for="img" class="form-label">Miniatura</label>
-      <input
-        type="file"
-        class="form-control"
-        id="img"
-        formControlName="img"
-        (change)="onFileSelected($event)"
-      />
-    </div>
     <!--     <div class="col-md-6">
       <label for="imgBackground" class="form-label">Sfondo</label>
       <input

@@ -9,3 +9,9 @@
 .pt-custom {
   padding-top: 96.8px;
 }
+
+.description {
+  width: 725px;
+  margin: auto;
+  line-height: 2;
+}
